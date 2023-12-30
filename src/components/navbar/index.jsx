@@ -22,21 +22,21 @@ const Navbar = () => {
           className="collapse navbar-collapse justify-content-between"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <Link class="nav-link" aria-current="page" to="/category">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/category">
                 Categories
               </Link>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link" aria-current="page" to="/favorite">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/favorite">
                 Favorites
               </Link>
             </li>
           </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <Link class="nav-link" aria-current="page" to="/login">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/login">
                 Login
               </Link>
             </li>
