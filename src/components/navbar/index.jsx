@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <a className="navbar-brand" href="/category">
+        <Link className="navbar-brand" to="/category">
           Recipe Book
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,28 +24,21 @@ const Navbar = () => {
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/category">
+              <Link class="nav-link" aria-current="page" to="/category">
                 Categories
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/favorite">
+              <Link class="nav-link" aria-current="page" to="/favorite">
                 Favorites
-              </a>
+              </Link>
             </li>
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/login">
+              <Link class="nav-link" aria-current="page" to="/login">
                 Login
-              </a>
-            </li>
-            <li class="nav-item">
-              <div class="row">
-                <a class="nav-link" aria-current="page" href="/logout">
-                  Logout for
-                </a>
-              </div>
+              </Link>
             </li>
           </ul>
         </div>
