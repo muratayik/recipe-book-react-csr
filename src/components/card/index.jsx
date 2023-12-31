@@ -1,29 +1,38 @@
 import { Link } from "react-router-dom";
 
 import styles from "./index.module.css";
+import CardImage from "./card-image";
+import CardTitle from "./card-title";
+import CardDesription from "./card-desription";
+import CardTooltip from "./card-tooltip";
+import CardFooter from "./card-footer";
 
 const Card = (props) => {
-  const { name, imageUrl, description, linkUrl } = props;
-
-  const editedDesription =
-    description <= 200 ? description : description.substring(0, 200);
+  const { name, imageUrl, description, linkUrl, showDescription, showFooter } =
+    props;
 
   return (
     <div
       className={`p-1 col-xs-12 col-sm-6 col-md-4 col-lg-3 ${styles.cardItem}`}
     >
       <div className="card h-100">
-        <Link to={linkUrl} className="h-100">
-          <div className="card-body">
-            <img src={imageUrl} className="card-img-top" alt={name} />
-            <h5 className="card-title text-center py-2">{name}</h5>
-            <span
-              className="d-inline-block"
-              tabIndex="0"
-              data-bs-toggle="tooltip"
+        <Link to={linkUrl} className={`${styles.cardLink} h-100`}>
+          <div className="card-body h-100 p-2">
+            <CardTooltip
+              description={description}
+              showDescription={showDescription}
             >
-              <p className="card-text text-muted">{editedDesription}</p>
-            </span>
+              <div className="d-flex flex-column h-100">
+                <CardImage imageUrl={imageUrl} name={name} />
+                <div className="d-flex flex-column flex-grow-1">
+                  <CardTitle title={name} />
+                  {showDescription && (
+                    <CardDesription description={description} />
+                  )}
+                  {showFooter && <CardFooter />}
+                </div>
+              </div>
+            </CardTooltip>
           </div>
         </Link>
       </div>

@@ -25,7 +25,7 @@ const CategoryListPage = () => {
   return (
     <div className="row">
       {categoryListWithLinkUrl.map((c) => (
-        <Card key={c.id} {...c} />
+        <Card key={c.id} {...c} showDescription={true} />
       ))}
     </div>
   );
