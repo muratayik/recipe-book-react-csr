@@ -4,6 +4,7 @@ import LayoutPage from "./pages/LayoutPage";
 import FavoritePage from "./pages/FavoritePage";
 import LoginPage from "./pages/LoginPage";
 import MealListPage from "./pages/MealListPage";
+import MealDetailPage from "./pages/MealDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,10 +20,18 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: ":categoryPublidId/meals",
+    path: ":categoryPublicId/meals",
     element: (
       <LayoutPage>
         <MealListPage />
+      </LayoutPage>
+    ),
+  },
+  {
+    path: ":mealPublicId/details",
+    element: (
+      <LayoutPage>
+        <MealDetailPage />
       </LayoutPage>
     ),
   },

@@ -1,0 +1,7 @@
+.favorite {
+  background-color: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: rgb(138, 138, 242);
+}

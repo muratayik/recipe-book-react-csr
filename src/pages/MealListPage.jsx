@@ -6,15 +6,15 @@ import { retrieveMealsOfCategory } from "../utils/api.utils";
 import Card from "../components/card";
 
 const MealListPage = () => {
-  const { categoryPublidId } = useParams();
+  const { categoryPublicId } = useParams();
 
   const {
     isPending,
     error,
     data: meals,
   } = useQuery({
-    queryKey: ["mealsOfCategory", categoryPublidId],
-    queryFn: () => retrieveMealsOfCategory(categoryPublidId),
+    queryKey: ["mealsOfCategory", categoryPublicId],
+    queryFn: () => retrieveMealsOfCategory(categoryPublicId),
   });
 
   if (isPending) return <div>Fetching meals...</div>;
