@@ -1,0 +1,7 @@
+.submit-button {
+  max-width: 200px;
+}
+
+[aria-invalid="true"] {
+  border-color: red;
+}

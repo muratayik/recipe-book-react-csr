@@ -5,6 +5,7 @@ import FavoritePage from "./pages/FavoritePage";
 import LoginPage from "./pages/LoginPage";
 import MealListPage from "./pages/MealListPage";
 import MealDetailPage from "./pages/MealDetailPage";
+import RegisterPage from "./pages/RegisterPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,14 @@ export const router = createBrowserRouter([
     element: (
       <LayoutPage>
         <LoginPage />
+      </LayoutPage>
+    ),
+  },
+  {
+    path: "register",
+    element: (
+      <LayoutPage>
+        <RegisterPage />
       </LayoutPage>
     ),
   },
