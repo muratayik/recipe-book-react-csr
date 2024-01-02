@@ -5,7 +5,7 @@ const MealDetailInstructions = ({ mealDetail }) => {
     <>
       <h4>Instructions</h4>
       {instructions.map((ins) => (
-        <p>{ins.step}</p>
+        <p key={ins.id}>{ins.step}</p>
       ))}
     </>
   );

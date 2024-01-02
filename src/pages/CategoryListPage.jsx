@@ -1,19 +1,23 @@
-import { useQuery } from "@tanstack/react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-import { retrieveCategories } from "../utils/api.utils";
+import * as CategoryActions from "../store/category/category.actions";
+import * as CategorySelectors from "../store/category/category.selectors";
+
 import Card from "../components/card";
 
 const CategoryListPage = () => {
-  const {
-    isPending,
-    error,
-    data: categories,
-  } = useQuery({
-    queryKey: ["categoryData"],
-    queryFn: retrieveCategories,
-  });
+  const dispatch = useDispatch();
 
-  if (isPending) return <div>Fetching categories...</div>;
+  useEffect(() => {
+    dispatch(CategoryActions.fetchCategories());
+  }, [dispatch]);
+
+  const categories = useSelector(CategorySelectors.selectCategories);
+  const isLoading = useSelector(CategorySelectors.selectCategoryIsLoading);
+  const error = useSelector(CategorySelectors.selectCategoryError);
+
+  if (isLoading) return <div>Fetching categories...</div>;
 
   if (error) return <div>An error occurred: {error.message}</div>;
 

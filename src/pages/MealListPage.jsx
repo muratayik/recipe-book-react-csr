@@ -1,27 +1,29 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useQuery } from "@tanstack/react-query";
+import * as MealActions from "../store/meal/meal.actions";
+import * as MealSelectors from "../store/meal/meal.selectors";
 
-import { retrieveMealsOfCategory } from "../utils/api.utils";
 import Card from "../components/card";
 
 const MealListPage = () => {
   const { categoryPublicId } = useParams();
+  const dispatch = useDispatch();
 
-  const {
-    isPending,
-    error,
-    data: meals,
-  } = useQuery({
-    queryKey: ["mealsOfCategory", categoryPublicId],
-    queryFn: () => retrieveMealsOfCategory(categoryPublicId),
-  });
+  useEffect(() => {
+    dispatch(MealActions.fetchMealsOfCategory(categoryPublicId));
+  }, [categoryPublicId, dispatch]);
 
-  if (isPending) return <div>Fetching meals...</div>;
+  const mealList = useSelector(MealSelectors.selectMealList);
+  const isLoading = useSelector(MealSelectors.selectMealIsLoading);
+  const error = useSelector(MealSelectors.selectMealError);
+
+  if (isLoading) return <div>Fetching meals...</div>;
 
   if (error) return <div>An error occurred: {error.message}</div>;
 
-  const mealListWithLinkUrl = meals.map((meal) => ({
+  const mealListWithLinkUrl = mealList.map((meal) => ({
     ...meal,
     linkUrl: `/${meal.publicId}/details`,
   }));

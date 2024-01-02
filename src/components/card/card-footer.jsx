@@ -6,8 +6,8 @@ const CardFooter = () => {
       className={`card-footer d-flex justify-content-end mt-auto ${styles.favorite}`}
     >
       <span
-        class="d-inline-block"
-        tabindex="0"
+        className="d-inline-block"
+        tabIndex="0"
         data-bs-toggle="tooltip"
         title="Add To Favorites"
       >

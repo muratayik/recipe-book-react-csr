@@ -11,12 +11,12 @@ const MealDetail = ({ mealDetail }) => {
 
       <MealDetailLinks mealDetail={mealDetail} />
 
-      <div class="col">
-        <div class="row">
-          <div class="col-xs-12 col-md-6 p-3">
+      <div className="col">
+        <div className="row">
+          <div className="col-xs-12 col-md-6 p-3">
             <MealDetailIngredients mealDetail={mealDetail} />
           </div>
-          <div class="col-xs-12 col-md-6 p-3">
+          <div className="col-xs-12 col-md-6 p-3">
             <MealDetailImage mealDetail={mealDetail} />
           </div>
         </div>

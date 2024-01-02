@@ -4,7 +4,7 @@ const MealDetailIngredients = ({ mealDetail }) => {
   return (
     <ul>
       {ingredients.map((ing) => (
-        <li>{`${ing.amount} - ${ing.name}`}</li>
+        <li key={ing.id}>{`${ing.amount} - ${ing.name}`}</li>
       ))}
     </ul>
   );
