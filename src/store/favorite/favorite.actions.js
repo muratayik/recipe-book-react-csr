@@ -32,6 +32,7 @@ export const addToFavorites = createAsyncThunk(
     const token = TokenUtils.getToken();
 
     if (!token) {
+      alert("You must login to use this functionality");
       return [];
     }
 
@@ -51,6 +52,7 @@ export const removeFromFavorites = createAsyncThunk(
     const token = TokenUtils.getToken();
 
     if (!token) {
+      alert("You must login to use this functionality");
       return [];
     }
 
