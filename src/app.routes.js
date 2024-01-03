@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import MealListPage from "./pages/MealListPage";
 import MealDetailPage from "./pages/MealDetailPage";
 import RegisterPage from "./pages/RegisterPage";
+import LogoutPage from "./pages/LogoutPage";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,14 @@ export const router = createBrowserRouter([
     element: (
       <LayoutPage>
         <LoginPage />
+      </LayoutPage>
+    ),
+  },
+  {
+    path: "logout",
+    element: (
+      <LayoutPage>
+        <LogoutPage />
       </LayoutPage>
     ),
   },

@@ -2,6 +2,9 @@
   background-color: transparent;
   border: none;
   font-size: 1.1rem;
+  color: rgb(49, 49, 109);
+}
+
+.favoriteIcon {
   cursor: pointer;
-  color: rgb(138, 138, 242);
 }

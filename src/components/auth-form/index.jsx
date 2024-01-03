@@ -8,14 +8,16 @@ import AuthFormRememberMe from "./auth-form-remember-me";
 import AuthFormLink from "./auth-form-link";
 import AuthFormUsername from "./auth-form-username";
 
-const AuthForm = ({ operation }) => {
+const AuthForm = ({ operation, onFormSubmit }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    onFormSubmit(data);
+  };
 
   const showUsernameField = operation === "register";
   const showRememberMe = operation !== "register";

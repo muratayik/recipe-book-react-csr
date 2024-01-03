@@ -12,6 +12,11 @@ export const selectCategoryIsLoading = createSelector(
   (categoryState) => categoryState.isLoading
 );
 
+export const selectCategoryIsFetched = createSelector(
+  selectCategoryState,
+  (categoryState) => categoryState.isFetched
+);
+
 export const selectCategoryError = createSelector(
   selectCategoryState,
   (categoryState) => categoryState.error

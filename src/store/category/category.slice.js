@@ -6,6 +6,7 @@ const initialState = {
   categories: [],
   isLoading: false,
   error: null,
+  isFetched: false,
 };
 
 export const categorySlice = createSlice({
@@ -19,6 +20,7 @@ export const categorySlice = createSlice({
     builder.addCase(fetchCategories.fulfilled, (state, action) => {
       state.isLoading = false;
       state.categories = action.payload;
+      state.isFetched = true;
     });
     builder.addCase(fetchCategories.rejected, (state, action) => {
       state.isLoading = false;

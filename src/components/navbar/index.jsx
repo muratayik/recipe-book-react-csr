@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import * as AuthSelectors from "../../store/auth/auth.selectors";
+
+import UserInfo from "./user-info";
 
 const Navbar = () => {
+  const isLoggedIn = useSelector(AuthSelectors.selectAuthIsLoggedIn);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -28,19 +35,15 @@ const Navbar = () => {
                 Categories
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/favorite">
-                Favorites
-              </Link>
-            </li>
+            {isLoggedIn && (
+              <li className="nav-item">
+                <Link className="nav-link" aria-current="page" to="/favorite">
+                  Favorites
+                </Link>
+              </li>
+            )}
           </ul>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/login">
-                Login
-              </Link>
-            </li>
-          </ul>
+          <UserInfo isLoggedIn={isLoggedIn} />
         </div>
       </div>
     </nav>

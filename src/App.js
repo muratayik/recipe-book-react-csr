@@ -1,20 +1,31 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { RouterProvider } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { router } from "./app.routes";
 
-import { store } from "./store";
-import { Provider } from "react-redux";
-
-const queryClient = new QueryClient();
+import * as AuthActions from "./store/auth/auth.actions";
+import * as AuthSelectors from "./store/auth/auth.selectors";
+import * as FavoriteActions from "./store/favorite/favorite.actions";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </Provider>
-  );
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(AuthSelectors.selectAuthIsLoggedIn);
+
+  useEffect(() => {
+    dispatch(AuthActions.autoLogin());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(FavoriteActions.fetchFavorites());
+    } else {
+      dispatch(FavoriteActions.resetFavorites());
+    }
+  }, [dispatch, isLoggedIn]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
