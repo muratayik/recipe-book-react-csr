@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 import * as TokenUtils from "../../utils/token.utils";
+import * as ApiUtils from "../../utils/api.utils";
 
 import { resetFavorites } from "./favorite.slice";
 
@@ -20,9 +20,8 @@ export const fetchFavorites = createAsyncThunk(
     }
 
     const headers = generateAuthorizationHeader(token);
-    const res = await axios.get("http://localhost:3001/favorite", { headers });
-    const resData = await res.data;
-    return resData;
+
+    return await ApiUtils.get("/favorite", headers);
   }
 );
 
@@ -38,11 +37,8 @@ export const addToFavorites = createAsyncThunk(
 
     const headers = generateAuthorizationHeader(token);
     const data = { mealPublicId };
-    const res = await axios.post("http://localhost:3001/favorite/add", data, {
-      headers,
-    });
-    const resData = await res.data;
-    return resData;
+
+    return await ApiUtils.post("/favorite/add", data, headers);
   }
 );
 
@@ -58,15 +54,8 @@ export const removeFromFavorites = createAsyncThunk(
 
     const headers = generateAuthorizationHeader(token);
     const data = { mealPublicId };
-    const res = await axios.post(
-      "http://localhost:3001/favorite/remove",
-      data,
-      {
-        headers,
-      }
-    );
-    const resData = await res.data;
-    return resData;
+
+    return await ApiUtils.post("/favorite/remove", data, headers);
   }
 );
 

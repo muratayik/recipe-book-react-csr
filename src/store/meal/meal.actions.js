@@ -1,24 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+
+import * as ApiUtils from "../../utils/api.utils";
 
 export const fetchMealsOfCategory = createAsyncThunk(
   "meal/fetchMealsOfCategory",
-  async (categoryPublicId) => {
-    const res = await axios(
-      `http://localhost:3001/meal/byCategory/${categoryPublicId}`
-    );
-    const data = await res.data;
-    return data;
-  }
+  async (categoryPublicId) =>
+    await ApiUtils.get(`/meal/byCategory/${categoryPublicId}`)
 );
 
 export const fetchMealDetail = createAsyncThunk(
   "meal/fetchMealDetail",
-  async (mealPublicId) => {
-    const res = await axios(
-      `http://localhost:3001/meal/${mealPublicId}/detail`
-    );
-    const data = await res.data;
-    return data;
-  }
+  async (mealPublicId) => await ApiUtils.get(`/meal/${mealPublicId}/detail`)
 );

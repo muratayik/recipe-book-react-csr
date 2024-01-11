@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { autoLogin, login } from "./auth.actions";
+import { autoLogin, login, register } from "./auth.actions";
 
 export const initialState = {
   isLoading: false,
@@ -9,7 +9,6 @@ export const initialState = {
   username: "",
   role: "",
   token: "",
-  error: "",
 };
 
 export const authSlice = createSlice({
@@ -34,12 +33,26 @@ export const authSlice = createSlice({
       state.role = role;
       state.token = token;
       state.username = username;
-      state.error = "";
     });
-    builder.addCase(login.rejected, (state, action) => {
+    builder.addCase(login.rejected, (state) => {
       state.isLoading = false;
-      state.error = action.payload;
     });
+    builder.addCase(register.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(register.fulfilled, (state, action) => {
+      const { email, role, token, username } = action.payload;
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.email = email;
+      state.role = role;
+      state.token = token;
+      state.username = username;
+    });
+    builder.addCase(register.rejected, (state) => {
+      state.isLoading = false;
+    });
+
     builder.addCase(autoLogin.pending, (state) => {
       state.isLoading = true;
     });
@@ -52,9 +65,8 @@ export const authSlice = createSlice({
       state.username = username;
       state.token = token;
     });
-    builder.addCase(autoLogin.rejected, (state, action) => {
+    builder.addCase(autoLogin.rejected, (state) => {
       state.isLoading = false;
-      state.error = action.payload;
     });
   },
 });
