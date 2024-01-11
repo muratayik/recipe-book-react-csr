@@ -28,10 +28,7 @@ export const post = async (path, data, headers) => {
   return await res.data;
 };
 
-const getHost = () => {
-  console.log(`env is : <${process.env.REACT_APP_STAGE}>`);
-  console.log("isLocal : ", process.env.REACT_APP_STAGE === "local");
-  return process.env.REACT_APP_BACKEND_LOCATION === "local"
+const getHost = () =>
+  process.env.REACT_APP_BACKEND_LOCATION === "local"
     ? process.env.REACT_APP_DEV_API_URL
     : process.env.REACT_APP_PROD_API_URL;
-};
